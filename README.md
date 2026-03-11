@@ -14,7 +14,7 @@ Built by **Piyush Singh**.
 
 ## Features
 
-- **On-device AI** — Moondream2 (1.86B VLM) runs entirely on the device via `llama.rn`. Your images never leave your phone.
+- **On-device AI** — LiquidAI LFM2-VL-450M (450M VLM) runs entirely on the device via `llama.rn`. Your images never leave your phone.
 - **Animal identification** — common name, scientific name, habitat, diet, behaviour, rarity tier, and biome.
 - **Collectible Pokédex** — every scan is saved as a card with RPG-style stats that scale with rarity.
 - **7 biomes** — Forest, Grassland, Wetland, Coastal, Mountain, Desert, Urban — browse your collection by habitat.
@@ -31,7 +31,7 @@ Built by **Piyush Singh**.
 | Framework | React Native 0.81 + Expo SDK 54 (bare workflow) |
 | Navigation | Expo Router (file-based) |
 | Inference | `llama.rn` (llama.cpp React Native wrapper) |
-| Model | Moondream2 Q4 GGUF (~1.4 GB, downloaded on first launch) |
+| Model | LiquidAI LFM2-VL-450M Q8_0 (~483 MB, downloaded on first launch) |
 | State | Zustand |
 | Persistence | expo-sqlite (discoveries), AsyncStorage (profile) |
 | UI | expo-linear-gradient, react-native-reanimated, react-native-gesture-handler |
@@ -64,7 +64,7 @@ npx expo run:ios
 npx expo run:android
 ```
 
-On first launch the app downloads the Moondream2 GGUF weights (~1.4 GB) from HuggingFace. After that it works fully offline.
+On first launch the app downloads the LFM2-VL-450M GGUF weights (~483 MB) from HuggingFace. After that it works fully offline.
 
 ### Lint
 

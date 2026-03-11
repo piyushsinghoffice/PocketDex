@@ -1,1 +1,1 @@
-Pokedex app
+Poketdex-AI

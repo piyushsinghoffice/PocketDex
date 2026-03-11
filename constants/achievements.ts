@@ -1,0 +1,88 @@
+import { Achievement } from '@/types';
+
+export const ACHIEVEMENTS: Achievement[] = [
+  {
+    id: 'first_discovery',
+    title: 'First Discovery',
+    description: 'Scan and save your very first animal.',
+    icon: 'star',
+    condition: 'Save 1 discovery',
+  },
+  {
+    id: 'collector_5',
+    title: 'Budding Naturalist',
+    description: 'Build a collection of 5 different animals.',
+    icon: 'library',
+    condition: 'Save 5 discoveries',
+  },
+  {
+    id: 'collector_20',
+    title: 'Field Biologist',
+    description: 'Amass 20 entries in your PocketDex.',
+    icon: 'flask',
+    condition: 'Save 20 discoveries',
+  },
+  {
+    id: 'collector_50',
+    title: 'Legendary Collector',
+    description: '50 creatures catalogued — an extraordinary feat.',
+    icon: 'trophy',
+    condition: 'Save 50 discoveries',
+  },
+  {
+    id: 'park_explorer',
+    title: 'Park Explorer',
+    description: 'Discover animals in 3 different biomes.',
+    icon: 'map',
+    condition: 'Explore 3 biomes',
+  },
+  {
+    id: 'night_spotter',
+    title: 'Night Spotter',
+    description: 'Scan an animal after 9 PM.',
+    icon: 'moon',
+    condition: 'Scan after 21:00',
+  },
+  {
+    id: 'rare_hunter',
+    title: 'Rare Hunter',
+    description: 'Discover a Rare or higher tier animal.',
+    icon: 'diamond',
+    condition: 'Find a Rare, Epic, or Legendary animal',
+  },
+  {
+    id: 'legendary_finder',
+    title: 'Legendary Finder',
+    description: 'Encounter a Legendary tier creature.',
+    icon: 'flash',
+    condition: 'Find a Legendary animal',
+  },
+  {
+    id: 'habitat_master',
+    title: 'Habitat Master',
+    description: 'Discover animals across all 5 main biomes.',
+    icon: 'earth',
+    condition: 'Explore all biomes',
+  },
+  {
+    id: 'biome_master',
+    title: 'Biome Master',
+    description: 'Collect 5 or more animals from a single biome.',
+    icon: 'leaf',
+    condition: 'Collect 5+ from one biome',
+  },
+  {
+    id: 'favorited_5',
+    title: 'Creature Companion',
+    description: 'Mark 5 discoveries as your favourites.',
+    icon: 'heart',
+    condition: 'Favourite 5 animals',
+  },
+  {
+    id: 'sharp_eye',
+    title: 'Sharp Eye',
+    description: 'Scan an animal with 90%+ AI confidence.',
+    icon: 'eye',
+    condition: 'Scan with ≥90% confidence',
+  },
+];

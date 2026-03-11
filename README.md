@@ -4,6 +4,12 @@ A Pokédex for the real world. Point your camera at any animal and the app ident
 
 Built by **Piyush Singh**.
 
+<p align="center">
+  <a href="https://github.com/piyushsinghoffice/PocketDex/releases/download/v1.0.2/pocketdex-ai-v1.0.2.apk">
+    <img src="https://img.shields.io/badge/Download%20APK-v1.0.2-de3341?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" />
+  </a>
+</p>
+
 ---
 
 ## Features

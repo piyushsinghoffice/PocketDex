@@ -1,0 +1,72 @@
+name: Build Release APK
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant Gradle wrapper execute permission
+        run: chmod +x android/gradlew
+
+      # ── Keystore signing (optional) ────────────────────────────────────────
+      # To sign with a proper release keystore instead of the debug key:
+      # 1. Generate:  keytool -genkey -v -keystore release.keystore -alias pocketdex -keyalg RSA -keysize 2048 -validity 10000
+      # 2. Encode:    base64 -i release.keystore | pbcopy
+      # 3. Add the following GitHub Secrets:
+      #      ANDROID_KEYSTORE_BASE64   — base64-encoded keystore file
+      #      ANDROID_KEY_ALIAS         — key alias
+      #      ANDROID_STORE_PASSWORD    — store password
+      #      ANDROID_KEY_PASSWORD      — key password
+      # 4. Uncomment the step below and the signing env vars in the Gradle step.
+      #
+      # - name: Decode keystore
+      #   run: |
+      #     echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
+
+      - name: Build release APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+        # env:
+        #   KEYSTORE_FILE: release.keystore
+        #   KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        #   STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+        #   KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+
+      - name: Rename APK
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          mv android/app/build/outputs/apk/release/app-release.apk \
+             android/app/build/outputs/apk/release/pocketdex-ai-${VERSION}.apk
+
+      - name: Upload APK to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: android/app/build/outputs/apk/release/pocketdex-ai-*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

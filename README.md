@@ -68,28 +68,34 @@ npx expo lint
 
 ---
 
-## Building a Release APK
+## Download
 
-### Local
+Grab the latest APK directly from [GitHub Releases](../../releases/latest) — no Play Store required, just sideload it on any Android device.
 
-```bash
-cd android
-./gradlew assembleRelease
-# Output: android/app/build/outputs/apk/release/app-release.apk
+**Direct link pattern:**
+
+```text
+https://github.com/your-username/pocketdex-ai/releases/download/v1.0.0/pocketdex-ai-v1.0.0.apk
 ```
 
-### Via GitHub Actions
+Paste the link for your latest release on your portfolio. Each new release gets its own versioned APK attached automatically.
 
-Push a release tag to trigger the automated build:
+### Publishing a new release
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Then go to **GitHub → Releases → Draft a new release**, select the tag, and publish it. The workflow builds the APK and attaches it to the release automatically.
+Then go to **GitHub → Releases → Draft a new release**, select the tag, and publish it. The CI workflow builds the APK and attaches it to the release within a few minutes.
 
-> For Play Store distribution, generate a proper release keystore and add the secrets described in `.github/workflows/release.yml`.
+### Local build
+
+```bash
+cd android
+./gradlew assembleRelease
+# Output: android/app/build/outputs/apk/release/app-release.apk
+```
 
 ---
 

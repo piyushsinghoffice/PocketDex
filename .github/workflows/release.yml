@@ -34,29 +34,9 @@ jobs:
       - name: Grant Gradle wrapper execute permission
         run: chmod +x android/gradlew
 
-      # ── Keystore signing (optional) ────────────────────────────────────────
-      # To sign with a proper release keystore instead of the debug key:
-      # 1. Generate:  keytool -genkey -v -keystore release.keystore -alias pocketdex -keyalg RSA -keysize 2048 -validity 10000
-      # 2. Encode:    base64 -i release.keystore | pbcopy
-      # 3. Add the following GitHub Secrets:
-      #      ANDROID_KEYSTORE_BASE64   — base64-encoded keystore file
-      #      ANDROID_KEY_ALIAS         — key alias
-      #      ANDROID_STORE_PASSWORD    — store password
-      #      ANDROID_KEY_PASSWORD      — key password
-      # 4. Uncomment the step below and the signing env vars in the Gradle step.
-      #
-      # - name: Decode keystore
-      #   run: |
-      #     echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
-
       - name: Build release APK
         working-directory: android
         run: ./gradlew assembleRelease --no-daemon
-        # env:
-        #   KEYSTORE_FILE: release.keystore
-        #   KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-        #   STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
-        #   KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: Rename APK
         run: |
